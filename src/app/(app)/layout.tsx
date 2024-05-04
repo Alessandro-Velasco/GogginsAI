@@ -1,6 +1,7 @@
 import Navbar from "@/components/ui/Navbar";
 
 
+
 export default function AppLayout({
  children,
   }: Readonly<{
