@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "9": "^0.0.1",
     "@clerk/nextjs": "^5.0.6",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.378.0",
     "next": "14.2.3",
+    "node": "^20.13.0",
+    "npm": "^10.7.0",
+    "nvm": "^0.0.4",
+    "openai": "^4.42.0",
     "react": "^18",
     "react-dom": "^18",
     "tailwind": "^4.0.0",
