@@ -3,7 +3,8 @@
 import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React from 'react'
+import React from 'react';
+import { useClerk } from '@clerk/nextjs';
 
 const routes = [
     {
