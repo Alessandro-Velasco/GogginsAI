@@ -21,7 +21,9 @@ export async function POST(req: Request) {
 
         console.log("from openai", threadMessage);
 
-        return NextResponse.json({ message: threadMessage }, { status: 201 }
+        return NextResponse.json(
+          { message: threadMessage }, 
+          { status: 201 }
             
         );
     } catch (error) {
