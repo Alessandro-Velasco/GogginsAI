@@ -6,7 +6,7 @@ export async function POST() {
 
     try {
         const assistant = await openai.beta.assistants.create({
-            model: "gpt-3.5-turbo-16k-0613",
+            model: "gpt-3.5-turbo-16k",
             name: "Goggins AI Coach",
             instructions: `Prompt: "Create an AI assistant that responds to user queries about their progress in the workout plan designed in the style of David Goggins. The assistant should respond in an exaggerated, intense version of Goggins's style, using both aknowledge the user's efforts and push them to go further, always emphasizing that they are capable of more. Responses should be direct, motivational, and sligthtly over the top, reflecting the never satisfied, always-striving philosophy of Goggins."
 
@@ -39,7 +39,8 @@ export async function POST() {
 
         return NextResponse.json({ assistant }, { status: 201 });
     } catch (error) {
-         return NextResponse.json({ error: error}, { status: 500 });
-        console.error(error)
+        console.error(error);
+        return NextResponse.json({ error: error}, { status: 500 });
+
     }
 }
