@@ -2,10 +2,14 @@ generator client {
   provider = "prisma-client-js"
 }
 
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
 
 model Assistant {
   id String @id @default(uuid())
-  assistantID String @unique
+  assistantId String @unique
 }
 
 model UserThread {
