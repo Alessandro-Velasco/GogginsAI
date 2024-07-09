@@ -5,7 +5,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 import { useClerk } from '@clerk/nextjs';
+import { SignInButton } from "@clerk/nextjs";
 
+    
 const routes = [
     {
         name: "Chat",
@@ -37,7 +39,9 @@ function Navbar() {
                 {route.name}
               </Link>
         ))}
-
+        <div>
+      <SignInButton />
+    </div>
          <UserButton afterSignOutUrl="/" />
         </div>
       </div> 

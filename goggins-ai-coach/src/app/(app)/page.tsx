@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 function ChatPage() {
   return (
-    <div>ChatPage</div>
+    <div className="w-screen">ChatPage</div>
   )
 }
 
