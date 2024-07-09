@@ -1,9 +1,15 @@
+"use client"
 import React, { useState } from 'react';
 
 function ChatPage() {
-  const [fetching, setFetching] = useState(false);
+  const [fetching, setFetching] = useState(true);
   return (
-    <div className="w-screen h-full flex flex-col bg-black text-white">ChatPage</div>
+    <div className="w-screen h-screen flex flex-col bg-black text-white">ChatPage
+    
+    {fetching && <div className="text-center font-bold">Fetching...</div>}
+    
+    
+    </div>
   )
 }
 
