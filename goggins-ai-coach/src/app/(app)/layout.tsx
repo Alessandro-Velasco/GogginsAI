@@ -18,13 +18,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     }>("/api/user-thread")
   }
 
-  if (!Response.data.success || !Response.data.userThread) {
-    console.error(Response.data.message ?? "Unknow error.");
-    setUserThread(null)
+  if (!response.data.success || !response.data.userThread) {
+    console.error(response.data.message ?? "Unknow error.");
+    setUserThread(null);
     return;
   }
 
-  setUserThread(Response.data.userThread);
+  setUserThread(response.data.userThread);
 
   getUserThread();
   
