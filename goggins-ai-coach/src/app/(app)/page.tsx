@@ -1,17 +1,35 @@
 "use client";
 
-
-
+import axios from 'axios';
 import { Message } from 'openai/resources/beta/threads/messages.mjs';
 import React, { useState } from 'react';
 
 function ChatPage() {
+  
   const [fetching, setFetching] = useState(true);
   const [messages, setMessages] = useState<Message[]>([]);
 
-  const fetchMessages = async () => {
-    
-  }
+  const Message = async () => {
+
+    setFetching(true);
+
+    const response = await axios.get<{
+      success: Boolean;
+      error?: string;
+      messages?: Message[];
+    }>("/api/messages/list");
+
+    if (!response.data.success || !response.data.messages) {
+      console.error(response.data.error ?? "Unknow error.");
+      setFetching(false);
+      return;
+    }
+
+     let newMessages = response.data.messages;
+
+
+    };
+
   return (
     <div className="w-screen h-full flex flex-col bg-black text-white">ChatPage
     <div className='flex-grow overflow-hidden p-8 space-y-2'>
