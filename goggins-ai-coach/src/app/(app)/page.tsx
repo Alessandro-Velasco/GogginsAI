@@ -3,6 +3,8 @@
 import axios from 'axios';
 import { Message } from 'openai/resources/beta/threads/messages.mjs';
 import React, { useState } from 'react';
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
 
 function ChatPage() {
   
