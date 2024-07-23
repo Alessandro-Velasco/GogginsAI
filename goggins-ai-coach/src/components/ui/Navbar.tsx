@@ -40,7 +40,7 @@ function Navbar() {
               </Link>
         ))}
         <div>
-      <SignInButton />
+      <SignInButton forceRedirectUrl="/"/>
     </div>
          <UserButton afterSignOutUrl="/" />
         </div>
