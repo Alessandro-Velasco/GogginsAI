@@ -13,7 +13,7 @@ import { userThreadAtom } from "../../../atoms";
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   //const [userThread, setUserThread] = useState<UserThread | null>(null);
 
- const  [ ,setUserThread] = useAtom(userThreadAtom);
+ const  [ ,setUserThread ] = useAtom(userThreadAtom);
 
 
   useEffect(() => {

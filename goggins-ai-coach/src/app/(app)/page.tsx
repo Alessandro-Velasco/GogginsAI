@@ -34,7 +34,7 @@ function ChatPage() {
     
         if (!response.data.success || !response.data.messages) {
           console.error(response.data.error ?? "Unknow error.");
-          setFetching(false);
+        
           return;
         }
     
@@ -58,11 +58,13 @@ function ChatPage() {
         console.error(error);
         setFetching(false);
         setMessages([]);
+      } finally {
+        setFetching(false);
       }
   
       
   
-      }, [userThread]);
+   }, [userThread]);
 
     useEffect(() => {
       const intervalId = setInterval(fetchMessages, POLLING_FREQUENCY_MS);
@@ -75,14 +77,32 @@ function ChatPage() {
 
     <div className='flex-grow overflow-hidden p-8 space-y-2'>
 
-     {fetching && <div className="text-center font-bold">Fetching...</div>}
+     {fetching && messages.length === 0 && (
+      <div className="text-center font-bold">Fetching...</div>
+      )}
 
      {messages.length === 0 && !fetching &&(
       <div className="text-center font-bold">No messages...</div>
      )}
 
-    
+
+    {messages.map((message) => (
+    <div 
+      key={message.id} className={`px-4 py-2 mb-3 rounded-lg w-fit text-lg ${["true", "True"].includes(
+        (message.metadata  as { fromUser?: string }).fromUser ?? ""
+      )
+        ? "bg-yellow-500 ml-auto"
+        : "bg-gray-700"}`}>
+      {message.content[0].type === "text" 
+       ? message.content[0].text.value
+          .split("\n")
+          .map((text, index) => (<p key={index}>{text}</p>))
+      : null}
+        </div>
+
+    ))}
       </div>
+
     </div>
   );
 }
