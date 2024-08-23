@@ -1,11 +1,12 @@
 "use client"; 
 
 import Navbar from "@/components/ui/Navbar";
-import { UserThread } from "@prisma/client";
+import { Assistant, UserThread } from "@prisma/client";
 import axios from "axios";
 import { useAtom } from "jotai";
-import { useEffect, useState } from "react";
-import { userThreadAtom } from "../../../atoms";
+import { useEffect } from "react";
+import { assistantAtom, userThreadAtom } from "../../../atoms";
+import toast from "react-hot-toast";
 
 // Define the UserThread type based on your Prisma schema
 
@@ -13,8 +14,34 @@ import { userThreadAtom } from "../../../atoms";
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   //const [userThread, setUserThread] = useState<UserThread | null>(null);
 
- const  [ ,setUserThread ] = useAtom(userThreadAtom);
+ const [ , setUserThread ] = useAtom(userThreadAtom);
+ const [,setAssistant] = useAtom(assistantAtom); 
 
+ useEffect(() => {
+  async function getAssistant() {
+    try {
+      const response = await axios.get<{
+        success: boolean;
+        message?: string;
+        assistant: Assistant;
+      }>("/api/assistant");
+
+      if (!response.data.success || !response.data.assistant) {
+        console.error(response.data.message ?? "Unknown error.");
+        setAssistant(null);
+        return;
+      }
+
+      setAssistant(response.data.assistant);
+    } catch (error) {
+      console.error(error);
+      setAssistant(null);
+    }
+    
+  }
+
+  getAssistant();
+ },[]);
 
   useEffect(() => {
     async function getUserThread() {
